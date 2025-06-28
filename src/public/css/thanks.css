@@ -1,0 +1,51 @@
+.messages {
+    max-width: 700px;
+    width: 90%;
+    margin: 60px auto;
+    text-align: center;
+    padding: 60px 0 0 0;
+}
+
+.messages p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.6;
+    margin: 10px 0
+}
+
+.message__button {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+.message__button a {
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    background-color: #d9d9d9;
+    border: 1px solid #333;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.resend {
+    width: 100%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.resend__button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #3490dc;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
