@@ -10,7 +10,7 @@
 <body>
     <header class="header">
         <nav class="nav-list">
-            <a class="header-logo" href="/"><img src="{{ asset('img/CoachTech_White 1.png')}}" alt="logo">
+            <a class="header-logo" href="{{ route('working_status') }}"><img src="{{ asset('img/CoachTech_White 1.png')}}" alt="logo">
             </a>
         <ul class="nav-list-group">
             <li>

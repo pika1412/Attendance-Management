@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -18,28 +18,28 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 //認証
-Route::get('/register',[RegisterController::class,'showRegisterForm']);
-Route::post('/register',[RegisterController::class,'register']);
-
+Route::get('/register',[AuthController::class,'showRegisterForm']);
+Route::post('/register',[AuthController::class,'register']);
 //thanks
 Route::get('/thanks',function () {
     return view('auth.thanks');
 });
+//ログイン
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //メール認証
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
+    return redirect('/login');})->middleware(['auth', 'signed'])->name('verification.verify');
 
-    return redirect('/working_status');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-
-Route::get('/working_status', function () {
-    return 'メール認証完了しました！';
-});
-
-//勤怠登録
+//勤怠登録 認証つけるときは 'verified'をauthの後ろに追加
+Route::middleware(['auth','verified'])->group(function () {
 Route::get('/attendance',[AttendanceController::class,'create'])->name('attendance.create');
-Route::post('/attendance',[AttendanceController::class,'store'])->name('attendant.store');
-
+//勤怠ステータス表示更新
+Route::get('/working_status',[AttendanceController::class,'show'])->name('working_status');//画面表示
+Route::post('/working_status',[AttendanceController::class,'update'])->name('working_status');//ステータス変更
 //管理者画面
 Route::get('/attendance-list',[AttendanceController::class,'index']);
+});

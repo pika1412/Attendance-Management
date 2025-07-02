@@ -10,7 +10,7 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <a class="header__logo" href="/"><img src="{{ asset('img/CoachTech_White 1.png')}}" alt="logo"></a>
+            <a class="header__logo" href="{{ route('login') }}"><img src="{{ asset('img/CoachTech_White 1.png')}}" alt="logo"></a>
         </div>
     </header>
     <main>
