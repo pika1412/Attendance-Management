@@ -34,12 +34,14 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     $request->fulfill();
     return redirect('/login');})->middleware(['auth', 'signed'])->name('verification.verify');
 
-//勤怠登録 認証つけるときは 'verified'をauthの後ろに追加
+//認証後
 Route::middleware(['auth','verified'])->group(function () {
 Route::get('/attendance',[AttendanceController::class,'create'])->name('attendance.create');
 //勤怠ステータス表示更新
-Route::get('/working_status',[AttendanceController::class,'show'])->name('working_status');//画面表示
+Route::get('/working_status',[AttendanceController::class,'showWorkingStatus'])->name('working_status');//画面表示
 Route::post('/working_status',[AttendanceController::class,'update'])->name('working_status');//ステータス変更
 //管理者画面
-Route::get('/attendance-list',[AttendanceController::class,'index']);
+Route::get('/attendance-list',[AttendanceController::class,'index'])->name('attendance.index');
+Route::get('/attendance/detail/{id}', [AttendanceController::class, 'show'])->name('attendance.show');//詳細画面
+
 });

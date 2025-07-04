@@ -1,6 +1,5 @@
 a{
     text-decoration: none;
-    color: white;
 }
 
 .header {
@@ -36,6 +35,10 @@ a{
     align-items: center;
     gap: 30px;
     font-weight: bold;
+}
+
+.nav-list-group a{
+    color: white;
 }
 
 .logout-button button {

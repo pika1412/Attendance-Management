@@ -12,14 +12,22 @@ use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
-    public function show(){
+    public function showWorkingStatus(){
         $user = Auth::user();
         $today =  today();
-        $attendance = Attendance::where('user_id',Auth::id())->where('work_date',$today)->first();
+        $attendance = Attendance::where('user_id',Auth::id())
+        ->where('work_date', $today)
+        ->first();
+
         $status = $attendance?->status ?? 'off_duty';
 
         return view('staff.working_status', compact('status','attendance'
         ));
+    }
+
+    public function show($id) {
+        $attendance = Attendance::findOrFail($id);
+        return view('attendance.detail', compact('attendance'));
     }
 
     public function create(){
@@ -28,10 +36,6 @@ class AttendanceController extends Controller
 
         return view('staff.working_status', compact(
         'status','attendance'));
-    }
-
-    public function index(){
-        return view('admin.attendance_list');
     }
 
     public function update(Request $request){
@@ -81,4 +85,26 @@ class AttendanceController extends Controller
         }
         return redirect()->route('working_status');
     }
+
+    public function index(Request $request){
+        $user = Auth::user();
+
+        $month = $request->input('month', now()->format('Y-m'));
+        $currentMonth = Carbon::parse($month)->startOfMonth();
+        $endOfMonth = $currentMonth->copy()->endOfMonth();
+
+        $attendances = Attendance::where('user_id' , $user->id)
+        ->whereBetween('work_date',[$currentMonth,$endOfMonth])->get();
+
+        $prevMonth = $currentMonth->copy()->subMonth();
+        $nextMonth = $currentMonth->copy()->addMonth();
+
+        return view('staff.attendance-list', [
+            'attendances' => $attendances,
+            'currentMonth' => $currentMonth,
+            'prevMonth' => $prevMonth,
+            'nextMonth' => $nextMonth,
+        ]);
+    }
+
 }
