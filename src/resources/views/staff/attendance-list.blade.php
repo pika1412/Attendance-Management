@@ -33,14 +33,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($attendances as $attendance)
+                @foreach($datesInMonth as $date)
+                    @php
+                        $attendance = $attendances[$date->toDateString()] ?? null;
+                    @endphp
                     <tr class="table-row">
-                        <td>{{\Carbon\Carbon::parse($attendance->work_date)->format('Y/m/d') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($attendance->start_time)->format('H:i') ?? '' }}</td>
-                        <td>{{ \Carbon\Carbon::parse($attendance->end_time)->format('H:i') ?? '' }}</td>
+                        <td>{{$date->isoFormat('MM/DD(ddd)') }}</td>
+                        <td>{{ $attendance?->start_time ? \Carbon\Carbon::parse($attendance->start_time)->format('H:i') :null }}</td>
+                        <td>{{ $attendance?->end_time ? \Carbon\Carbon::parse($attendance->end_time)->format('H:i') : null }}</td>
                         <td>{{ $attendance->formatted_break_time ?? ''}}</td>
                         <td>{{ $attendance->total_time_formatted ?? '' }}</td>
-                        <td><a href="{{ route('attendance.show', $attendance->id)}}">詳細</a></td>
+                        <td>
+                        @if ($attendance)
+                            <a href="{{ route('attendance.detail', ['id' => $attendance->id]) }}">詳細</a>
+                        @else
+                        @endif</td>
                     </tr>
                 @endforeach
             </tbody>

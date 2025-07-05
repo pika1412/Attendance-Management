@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Attendance;
 use Carbon\Carbon;
-use App\Models\Breaks;
+use Carbon\CarbonPeriod;
+use App\Models\BreakTime;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,7 +28,7 @@ class AttendanceController extends Controller
 
     public function show($id) {
         $attendance = Attendance::findOrFail($id);
-        return view('attendance.detail', compact('attendance'));
+        return view('staff.attendance_detail', compact('attendance'));
     }
 
     public function create(){
@@ -53,7 +54,9 @@ class AttendanceController extends Controller
 
         switch($action){
             case 'working':
+                if(!$attendance->start_time){
                 $attendance->update   (['start_time' =>  now(),'status' => 'working',]);
+                }
             break;
 
             case 'finished':
@@ -66,7 +69,7 @@ class AttendanceController extends Controller
             case 'start_break':
                 $attendance ->update(['status' => 'on_break']);
 
-                Breaks::create([
+                BreakTime::create([
                     'user_id' => $user->id,
                     'attendance_id' =>$attendance->id,
                     'start_break' => now(),]);
@@ -74,7 +77,7 @@ class AttendanceController extends Controller
 
             case 'end_break':
                 $attendance->update(['status' => 'working']);
-                $break = Breaks::where('attendance_id',$attendance->id)
+                $break = BreakTime::where('attendance_id',$attendance->id)
                 ->whereNull('end_break')
                 ->latest()
                 ->first();
@@ -94,17 +97,30 @@ class AttendanceController extends Controller
         $endOfMonth = $currentMonth->copy()->endOfMonth();
 
         $attendances = Attendance::where('user_id' , $user->id)
-        ->whereBetween('work_date',[$currentMonth,$endOfMonth])->get();
+        ->whereBetween('work_date',[$currentMonth,$endOfMonth])->get()
+        ->keyBy('work_date');
+
+        $datesInMonth = collect(CarbonPeriod::create(
+            Carbon::parse($month)->startOfMonth(),
+            Carbon::parse($month)->endOfMonth()
+        ));
 
         $prevMonth = $currentMonth->copy()->subMonth();
         $nextMonth = $currentMonth->copy()->addMonth();
 
         return view('staff.attendance-list', [
             'attendances' => $attendances,
+            'datesInMonth'=> $datesInMonth,
             'currentMonth' => $currentMonth,
             'prevMonth' => $prevMonth,
             'nextMonth' => $nextMonth,
         ]);
+    }
+
+    public function showDetail($id){
+        $attendance = Attendance::with('user','breakTimes')->findOrFail($id);
+
+        return view('staff.attendance_detail',compact('attendance'));
     }
 
 }
