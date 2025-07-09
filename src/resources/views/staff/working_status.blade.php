@@ -13,7 +13,8 @@
             <div class="working-status">勤務外
             </div><!--working-status-->
 
-            <p>{{ now()->isoFormat('Y年m月d日 (ddd)') }}</p>
+            <p>{{ now()->isoFormat('YYYY年MM月DD日 (ddd)') }}</p>
+
             <p>{{ now()->format('H:i') }}</p>
 
             <button class="on-duty" type="submit" name="action" value="working">出勤</button>
@@ -24,7 +25,7 @@
             <div class="working-status">出勤中
             </div><!--working-status-->
 
-            <p>{{ now()->isoFormat('Y年m月d日 (ddd)') }}</p>
+            <p>{{ now()->isoFormat('YYYY年MM月DD日 (ddd)') }}</p>
             <p>{{ now()->format('H:i') }}</p>
 
             <button class="working-button" type="submit" name="action" value="finished">退勤</button>
@@ -36,7 +37,7 @@
             <div class="working-status">休憩中
             </div><!--working-status-->
 
-            <p>{{ now()->isoFormat('Y年m月d日 (ddd)') }}</p>
+            <p>{{ now()->isoFormat('YYYY年MM月DD日 (ddd)') }}</p>
             <p>{{ now()->format('H:i') }}</p>
             <button class="end-break-button" type="submit" name="action" value="end_break">休憩戻</button>
         </div><!--status-->
@@ -45,7 +46,7 @@
         <div class="status">
             <div class="working-status">退勤済
             </div><!--working-status-->
-            <p>{{ now()->isoFormat('Y年m月d日 (ddd)') }}</p>
+            <p>{{ now()->isoFormat('YYYY年MM月DD日 (ddd)') }}</p>
             <p>{{ now()->format('H:i') }}</p>
             <p class="finished">お疲れさまでした。</p>
         </div><!--status-->

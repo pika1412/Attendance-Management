@@ -19,7 +19,7 @@
             <li>
                 <a href="{{ route('attendance.index') }}" class="">勤怠一覧</a>
             </li>
-            <li><a href="/attendance_detail" class="">申請</a></li>
+            <li><a href="{{ route('application')}}" class="">申請</a></li>
             <li>
                 <div class="logout-button">
                 <form action="{{ route('logout') }}" method="post">

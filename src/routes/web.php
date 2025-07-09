@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\ApplicationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -43,5 +44,9 @@ Route::post('/working_status',[AttendanceController::class,'update'])->name('wor
 Route::get('/attendance-list',[AttendanceController::class,'index'])->name('attendance.index');//勤怠一覧
 Route::get('/attendance/list/{id}',[AttendanceController::class,'show'])->name('attendance.show');//詳細ボタン
 Route::get('/attendance/detail/{id}', [AttendanceController::class, 'showDetail'])->name('attendance.detail');//詳細画面
+Route::patch('attendance/{id}/approval',[AttendanceController::class,'updateDetail'])->name('attendance.updateDetail');//修正ボタン
+
+Route::get('/stamp/{id}',[ApplicationController::class,'index'])->name('staff.stamp');//承認待ち画面
+Route::get('/application',[ApplicationController::class,'application'])->name('application');//申請一覧
 
 });
