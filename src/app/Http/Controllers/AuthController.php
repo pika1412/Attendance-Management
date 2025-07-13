@@ -45,7 +45,7 @@ class AuthController extends Controller
             return redirect()->back()->withErrors([
                 'email' => 'メールアドレスの認証が完了していません。',]);
         }
-        return redirect()->intended('/working_status');
+        return redirect()->intended('/working_status')->with('message', 'ログイン成功');
         }
         return redirect()->back()->withErrors([
             'email' => 'ログイン情報が正しくありません。',

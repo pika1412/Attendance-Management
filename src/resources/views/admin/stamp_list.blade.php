@@ -1,11 +1,9 @@
-@extends('layouts.staff')<!--申請画面-->
+@extends('layouts.admin')
 @section('css')
 <link rel="stylesheet" href=" {{ asset('css/stamp-list.css') }}" />
 @endsection
 
 @section('content')
-<p>件数: {{ $applications->count() }}</p>
-
 <div class="application-list-content">
     <div class="application-title">
         <h2>申請一覧</h2>
@@ -48,7 +46,7 @@
                 <td>{{$app->attendance->work_date}}</td>
                 <td>{{$app->attendance->memo}}</td>
                 <td>{{$app->applied_at}}</td>
-                <td> <a href="{{ route('attendance.detail', ['id' => $app->attendance_id]) }}">詳細</a></td>
+                <td> <a href="{{ route('admin.attendance_detail', ['id' => $app->attendance_id]) }}">詳細</a></td>
             </tr>
             @endforeach
         </table>

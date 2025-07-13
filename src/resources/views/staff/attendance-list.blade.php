@@ -1,4 +1,4 @@
-@extends('layouts.staff')
+@extends('layouts.staff')<!--勤怠一覧-->
 @section('css')
 <link rel="stylesheet" href=" {{ asset('css/attendance-list.css') }}" />
 @endsection
@@ -45,7 +45,7 @@
                         <td>{{ $attendance->total_time_formatted ?? '' }}</td>
                         <td>
                         @if ($attendance)
-                            <a href="{{ route('staff.attendance.detail', ['id' => $attendance->id]) }}">詳細</a>
+                            <a href="{{ route('attendance.detail', ['id' => $attendance->id]) }}">詳細</a>
                         @else
                         @endif</td>
                     </tr>

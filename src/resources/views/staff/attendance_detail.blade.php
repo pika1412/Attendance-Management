@@ -48,7 +48,12 @@
                     </td>
                 </tr>
             </table>
-                <button type="submit">修正</button>
+            @if($status === null || $status === 'rejected')
+                <button type="submit">修正
+                </button>
+            @elseif($status === 'pending')
+                <p class="message">※承認待ちの為修正はできません</p>
+            @endif
         </form>
     </div><!--detail-table-->
 </div><!--detail-content-->

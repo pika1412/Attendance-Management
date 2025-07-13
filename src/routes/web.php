@@ -7,6 +7,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminAttendanceController;
+use App\Http\Controllers\AdminApplicationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -47,7 +48,6 @@ Route::get('/attendance-list',[AttendanceController::class,'index'])->name('atte
 Route::get('/attendance/list/{id}',[AttendanceController::class,'show'])->name('attendance.show');//詳細ボタン
 Route::get('/attendance/detail/{id}', [AttendanceController::class, 'showDetail'])->name('attendance.detail');//詳細画面
 Route::patch('attendance/{id}/approval',[AttendanceController::class,'updateDetail'])->name('attendance.updateDetail');//修正ボタン
-
 Route::get('/stamp/{id}',[ApplicationController::class,'index'])->name('staff.stamp');//承認待ち画面
 Route::get('/application',[ApplicationController::class,'application'])->name('application');//申請一覧
 });
@@ -60,7 +60,11 @@ Route::post('admin/logout',[AdminAuthController::class,'logout'])->name('admin.l
 //認証後
 Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function(){
 Route::get('/attendance/list',[AdminAttendanceController::class,'index'])->name('attendance_list');//勤怠一覧
-Route::get('/attendance/{id}',[AdminAttendanceController::class,'showAdminDetail'])->name('attendance.detail');//詳細画面
-Route::patch('attendance/{id}/approval',[AdminAttendanceController::class,'updateDetail'])->name('attendance.updateDetail');
+Route::get('/attendance/{id}',[AdminAttendanceController::class,'showAdminDetail'])->name('attendance_detail');//詳細画面
+Route::patch('attendance/{id}/approval',[AdminAttendanceController::class,'updateDetail'])->name('attendance.updateDetail');//修正ボタン
+Route::get('/staff/list',[AdminAttendanceController::class,'staffList'])->name('staff_list');//スタッフ一覧
+Route::get('attendance/staff/{id}',[AdminAttendanceController::class,'staffAttendanceList'])->name('staff_attendance_list');//スタッフ別勤怠一覧
+Route::get('/stamp/correction_request/list',[AdminApplicationController::class,'application'])->name('stamp_list');//申請一覧
+
 });
 

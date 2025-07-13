@@ -6,7 +6,7 @@
 @section('content')
 <div class="attendance-list-content">
     <div class="list-title">
-        <h2>勤怠一覧</h2>
+        <h2>{{$user->name}}さんの勤怠</h2>
     </div><!--list-title-->
     <nav>
         <ul class="month-navigation">

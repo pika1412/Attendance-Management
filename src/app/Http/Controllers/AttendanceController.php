@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Attendance;
+use App\Models\Application;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Models\BreakTime;
@@ -121,7 +122,11 @@ class AttendanceController extends Controller
     public function showDetail($id){
         $attendance = Attendance::with('user','breakTimes')->findOrFail($id);
 
-        return view('staff.attendance_detail',compact('attendance'));
+        $application = Application::where('attendance_id',$attendance->id)->where('user_id',auth()->id())->latest()->first();
+
+        $status = $application?->status ?? null;
+
+        return view('staff.attendance_detail',compact('attendance','status'));
     }
 
     public function updateDetail(AttendanceRequest $request, $id){
@@ -139,6 +144,14 @@ class AttendanceController extends Controller
             'end_time' => $endDateTime,
             'memo' => $request->input('memo'),
         ]);
+
+        Application::create([
+            'user_id' => auth()->id(),
+            'attendance_id' =>$attendance->id,
+            'status' => 'pending',
+            'applied_at' => now(),
+        ]);
+
         return redirect()->route('staff.stamp',['id' => $attendance->id]);
     }
 

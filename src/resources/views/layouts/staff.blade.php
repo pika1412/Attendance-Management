@@ -14,7 +14,7 @@
             </a>
         <ul class="nav-list-group">
             <li>
-                <a href="/working_status" class="attendance">勤怠</a>
+                <a href="{{ route('working_status') }}" class="attendance">勤怠</a>
             </li>
             <li>
                 <a href="{{ route('attendance.index') }}" class="">勤怠一覧</a>
@@ -25,8 +25,8 @@
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button type="submit">ログアウト</button>
-                </div>
                 </form>
+                </div>
             </li>
         </ul>
         </nav>

@@ -16,10 +16,10 @@
             <li>
                 <a href="{{ route('admin.attendance_list')}}" class="attendance-list">勤怠一覧</a>
             </li>
-            <li><!-- route('admin.staff_attendance_list')-->
-                <a href="#" class="staff-list">スタッフ一覧</a>
+            <li>
+                <a href="{{ route('admin.staff_list')}}" class="staff-list">スタッフ一覧</a>
             </li>
-            <li><a href="#" class="application-list">申請一覧</a></li>
+            <li><a href="{{ route('admin.stamp_list') }}" class="application-list">申請一覧</a></li>
             <li>
                 <div class="logout-button">
                 <form action="{{ route('admin.logout') }}" method="post">
