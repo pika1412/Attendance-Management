@@ -49,4 +49,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function break(){
         return $this->hasOne('App\Models\Break');
     }
+
+    public function admin(){
+        return $this->hasOne('App\Models\Admin');
+    }
 }

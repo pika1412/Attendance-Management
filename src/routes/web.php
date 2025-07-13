@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminAttendanceController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -32,8 +34,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //メール認証
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect('/login');})->middleware(['auth', 'signed'])->name('verification.verify');
+$request->fulfill();
+return redirect('/login');})->middleware(['auth', 'signed'])->name('verification.verify');
 
 //認証後
 Route::middleware(['auth','verified'])->group(function () {
@@ -48,5 +50,17 @@ Route::patch('attendance/{id}/approval',[AttendanceController::class,'updateDeta
 
 Route::get('/stamp/{id}',[ApplicationController::class,'index'])->name('staff.stamp');//承認待ち画面
 Route::get('/application',[ApplicationController::class,'application'])->name('application');//申請一覧
-
 });
+
+//管理者認証
+Route::get('/admin/login',[AdminAuthController::class,'showLoginForm'])->name('admin.login');
+Route::post('/admin/login',[AdminAuthController::class,'login'])->name('admin.login.submit');
+Route::post('admin/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
+
+//認証後
+Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function(){
+Route::get('/attendance/list',[AdminAttendanceController::class,'index'])->name('attendance_list');//勤怠一覧
+Route::get('/attendance/{id}',[AdminAttendanceController::class,'showAdminDetail'])->name('attendance.detail');//詳細画面
+Route::patch('attendance/{id}/approval',[AdminAttendanceController::class,'updateDetail'])->name('attendance.updateDetail');
+});
+

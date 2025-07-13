@@ -14,15 +14,15 @@
             </a>
         <ul class="nav-list-group">
             <li>
-                <a href="/attendance_list" class="attendance-list">勤怠一覧</a>
+                <a href="{{ route('admin.attendance_list')}}" class="attendance-list">勤怠一覧</a>
             </li>
-            <li>
-                <a href="/staff_list" class="staff-list">スタッフ一覧</a>
+            <li><!-- route('admin.staff_attendance_list')-->
+                <a href="#" class="staff-list">スタッフ一覧</a>
             </li>
-            <li><a href="/application_list" class="application-list">申請一覧</a></li>
+            <li><a href="#" class="application-list">申請一覧</a></li>
             <li>
                 <div class="logout-button">
-                <form action="{{ route('logout') }}" method="post">
+                <form action="{{ route('admin.logout') }}" method="post">
                     @csrf
                     <button type="submit">ログアウト</button>
                 </div>

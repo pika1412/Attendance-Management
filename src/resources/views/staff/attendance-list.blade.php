@@ -45,7 +45,7 @@
                         <td>{{ $attendance->total_time_formatted ?? '' }}</td>
                         <td>
                         @if ($attendance)
-                            <a href="{{ route('attendance.detail', ['id' => $attendance->id]) }}">詳細</a>
+                            <a href="{{ route('staff.attendance.detail', ['id' => $attendance->id]) }}">詳細</a>
                         @else
                         @endif</td>
                     </tr>

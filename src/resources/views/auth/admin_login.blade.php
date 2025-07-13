@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.admin_default')
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/login.css')}}"/>
 @endsection
@@ -10,7 +10,7 @@
             <h2>ログイン</h2>
         </div><!---login__title-->
 <!--ログインフォーム-->
-        <form action="{{ route('login') }}" method="post" class="form">
+        <form action="{{ route('admin.login.submit') }}" method="post" class="form">
         @csrf
 <!--メールアドレス-->
             <div class="form-group">
