@@ -33,7 +33,7 @@ class AdminAttendanceController extends Controller
         $user = Auth::user();
         $attendance = Attendance::with(['user','breakTimes'])->findOrFail($id);
 
-        return view('admin.attendance_detail',compact('attendance','application', 'status'));
+        return view('admin.attendance_detail',compact('attendance'));
     }
 
     public function updateDetail(AttendanceRequest $request,$id){
@@ -42,8 +42,8 @@ class AdminAttendanceController extends Controller
         $memo = $request->input('memo');
         $date = $request->input('working_date') ?? now()->toDateString();
 
-        $startDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $start);
-        $endDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $end);
+        $startDateTime = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $start);
+        $endDateTime = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $end);
 
         $attendance = Attendance::findOrFail($id);
         $attendance->update([

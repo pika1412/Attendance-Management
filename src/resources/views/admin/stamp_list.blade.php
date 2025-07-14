@@ -10,12 +10,12 @@
     </div>
     <div class="border">
         <ul class="border-list">
-            <li class="{{ $page === 'pending' ? 'active' : ''}}"><a href="/application?page=pending">承認待ち</a></li>
-            <li class="{{ $page === 'approved' ? 'active' : ''}}"><a href="/application?page=approved">承認済み</a></li>
+            <li class="{{ $page === 'pending' ? 'active' : ''}}"><a href="{{ route('admin.stamp_list',['page'=>'pending']) }}">承認待ち</a></li>
+            <li class="{{ $page === 'approved' ? 'active' : ''}}"><a href="{{ route('admin.stamp_list',['page'=>'approved']) }}">承認済み</a></li>
         </ul>
     </div><!--border-->
     <div class="application-table">
-        @if($page == 'pending')
+        @if($page == 'pending' || $page == 'approved')
         <table>
             <tr class="table-row">
                 <th>状態</th>
@@ -46,7 +46,7 @@
                 <td>{{$app->attendance->work_date}}</td>
                 <td>{{$app->attendance->memo}}</td>
                 <td>{{$app->applied_at}}</td>
-                <td> <a href="{{ route('admin.attendance_detail', ['id' => $app->attendance_id]) }}">詳細</a></td>
+                <td> <a href="{{ route('admin.application_approval', ['attendance_correct_request' => $app->attendance_id]) }}">詳細</a></td>
             </tr>
             @endforeach
         </table>

@@ -126,7 +126,7 @@ class AttendanceController extends Controller
 
         $status = $application?->status ?? null;
 
-        return view('staff.attendance_detail',compact('attendance','status'));
+        return view('staff.attendance_detail',compact('attendance','status','application'));
     }
 
     public function updateDetail(AttendanceRequest $request, $id){

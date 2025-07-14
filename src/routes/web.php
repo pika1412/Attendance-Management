@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminAttendanceController;
 use App\Http\Controllers\AdminApplicationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\MiddlewareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,13 +59,14 @@ Route::post('/admin/login',[AdminAuthController::class,'login'])->name('admin.lo
 Route::post('admin/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
 
 //認証後
-Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function(){
+Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(function(){
 Route::get('/attendance/list',[AdminAttendanceController::class,'index'])->name('attendance_list');//勤怠一覧
 Route::get('/attendance/{id}',[AdminAttendanceController::class,'showAdminDetail'])->name('attendance_detail');//詳細画面
 Route::patch('attendance/{id}/approval',[AdminAttendanceController::class,'updateDetail'])->name('attendance.updateDetail');//修正ボタン
 Route::get('/staff/list',[AdminAttendanceController::class,'staffList'])->name('staff_list');//スタッフ一覧
 Route::get('attendance/staff/{id}',[AdminAttendanceController::class,'staffAttendanceList'])->name('staff_attendance_list');//スタッフ別勤怠一覧
 Route::get('/stamp/correction_request/list',[AdminApplicationController::class,'application'])->name('stamp_list');//申請一覧
-
-});
+Route::get('/stamp_correction_request/approve/{attendance_correct_request}',[AdminApplicationController::class,'showAdminApproval'])->name('application_approval');//修正承認画面
+Route::patch('/stamp_correction_request/approve/{attendance_correct_request}', [AdminApplicationController::class, 'approval'])->name('approval');
+});//承認ボタンリダイレクト
 

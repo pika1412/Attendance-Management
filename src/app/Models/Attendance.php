@@ -16,6 +16,7 @@ class Attendance extends Model
         'status',
         'start_time',
         'end_time',
+        'memo',
     ];
 
     public function user(){

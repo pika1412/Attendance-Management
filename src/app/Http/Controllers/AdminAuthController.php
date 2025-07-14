@@ -18,7 +18,7 @@ class AdminAuthController extends Controller
     public function login(Request $request){
         $credential = $request->only(['email','password']);
 
-        if(Auth::guard('admin')->attempt($credential)){
+        if(Auth::attempt($credential)){
 
             return redirect()->route('admin.attendance_list');
         }else{
@@ -30,7 +30,7 @@ class AdminAuthController extends Controller
 
     public function logout()
     {
-        Auth::guard('admin')->logout();
+        Auth::logout();
         return redirect('/admin/login');
     }
 }
