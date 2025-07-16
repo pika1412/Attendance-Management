@@ -4,7 +4,6 @@
 @endsection
 
 @section('content')
-<p>件数: {{ $applications->count() }}</p>
 
 <div class="application-list-content">
     <div class="application-title">

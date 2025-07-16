@@ -1,16 +1,16 @@
-body{
+body {
     background: rgba(240, 239, 242, 1);
     max-width: 1512px;
 }
 
-.attendance-list-content{
+.attendance-list-content {
     max-width: 800px;
     width: 100%;
     margin: 60px auto;
 
 }
 
-.list-title h2{
+.list-title h2 {
     margin: 40px 0;
     padding-left: 10px;
     border-left: 8px solid black;
@@ -19,7 +19,7 @@ body{
     font-weight: bold;
 }
 
-.day-navigation{
+.month-navigation {
     display: flex;
     justify-content: space-between;
     background-color: white;
@@ -29,25 +29,25 @@ body{
     border-radius: 10px;
 }
 
-.previous-day a,
-.next-day a{
-    color: rgba(115,115,115,1);
+.previous-month a,
+.next-month a {
+    color: rgba(115, 115, 115, 1);
     font-size: 15px;
     font-weight: bold;
 }
 
-.today{
+.current-month {
     font-weight: bold;
     font-size: 20px;
 }
 
-.attendance-list-table{
+.attendance-list-table {
     border-radius: 10px;
     background-color: white;
     overflow: hidden;
 }
 
-.attendance-list-table table{
+.attendance-list-table table {
     width: 100%;
     table-layout: fixed;
     text-align: center;
@@ -56,15 +56,16 @@ body{
 }
 
 .attendance-list-table th,
-.attendance-list-table td{
+.attendance-list-table td {
     padding: 10px 0;
-    border-bottom: 3px solid rgba(240, 239, 242, 1);;
+    border-bottom: 3px solid rgba(240, 239, 242, 1);
+    ;
     color: rgba(115, 115, 115, 1);
     font-size: 15px;
     font-weight: bold;
 }
 
-.attendance-list-table a{
+.attendance-list-table a {
     color: black;
     font-size: 15px;
     font-weight: bold;

@@ -88,7 +88,7 @@ class AttendanceController extends Controller
             }
             break;
         }
-        return redirect()->route('working_status');
+        return redirect('/working_status');
     }
 
     public function index(Request $request){

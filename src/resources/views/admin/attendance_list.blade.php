@@ -9,20 +9,20 @@
         <h2>{{now()->isoFormat('YYYY年MM月DD日') }}の勤怠</h2>
     </div><!--list-title-->
     <nav>
-        <ul class="month-navigation">
-            <li class="previous-month">
-                <a href="{{ route('attendance.index',['month' => $prevMonth->format('Y-m')]) }}">前月</a>
+        <ul class="day-navigation">
+            <li class="previous-day">
+                <a href="{{ route('admin.attendance_list',['day' => $yesterday->format('Y-m-d')]) }}">前日</a>
             </li>
-            <li class="current-month"><span>{{ $currentMonth->format('Y/m') }}</span>
+            <li class="today"><span>{{ $today->format('Y/m/d') }}</span>
             </li>
-            <li class="next-month">
-                <a href="{{ route('attendance.index',['month' => $nextMonth->format('Y-m')]) }}">翌月</a>
+            <li class="next-day">
+                <a href="{{ route('admin.attendance_list',['day' => $tomorrow->format('Y-m-d')]) }}">翌日</a>
             </li>
         </ul>
     </nav>
-    <div class="attendance-list">
+    <div class="attendance-list-table">
         <table>
-                <tr class="table-row">
+                <tr>
                     <th>名前</th>
                     <th>出勤</th>
                     <th>退勤</th>
@@ -31,7 +31,7 @@
                     <th>詳細</th>
                 </tr>
                     @foreach($todayAttendances as $attendance)
-                    <tr class="table-row">
+                    <tr>
                         <td>{{ optional($attendance?->user)->name ?? ''}}</td>
                         <td>{{ $attendance?->start_time ? \Carbon\Carbon::parse($attendance->start_time)->format('H:i') :null }}</td>
                         <td>{{ $attendance?->end_time ? \Carbon\Carbon::parse($attendance->end_time)->format('H:i') : null }}</td>

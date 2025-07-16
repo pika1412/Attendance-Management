@@ -3,7 +3,7 @@ body {
     max-width: 1512px;
 }
 
-.detail-content{
+.detail-content {
     max-width: 800px;
     width: 100%;
     margin: 40px auto;
@@ -24,7 +24,7 @@ body {
     overflow: hidden;
 }
 
-.detail-table table{
+.detail-table table {
     width: 100%;
     text-align: left;
     border-collapse: collapse;
@@ -32,36 +32,36 @@ body {
 }
 
 .detail-table th,
-.detail-table td{
-    border-bottom: 3px solid rgba(240, 239, 242, 1);;
+.detail-table td {
+    border-bottom: 3px solid rgba(240, 239, 242, 1);
+    ;
     font-size: 15px;
     font-weight: bold;
 }
 
-.detail-table th{
-    color: rgba(115,115,115,1);
+.detail-table th {
+    color: rgba(115, 115, 115, 1);
     padding: 25px 20px 25px 40px;
 }
 
-.detail-table td{
+.detail-table td {
     padding: 25px 0;
 }
 
-.detail-table input{
+.detail-table input {
     width: 100px;
     height: 30px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: transparent;
     text-align: center;
     font-size: 15px;
     font-weight: bold;
-    margin:0 40px;
+    margin: 0 40px;
 }
 
-.detail-table textarea{
+.detail-table textarea {
     width: 300px;
     height: 70px;
-    border: 1px solid #ddd;
+    border: transparent;
     border-radius: 5px;
     margin-left: 40px;
     resize: none;
@@ -72,20 +72,34 @@ body {
 }
 
 .name-row td,
-.date-row td{
+.date-row td {
     padding-left: 60px;
 }
 
 
-.button-container{
+.button-container {
     text-align: right;
 }
 
-.button-submit{
+.button-submit {
     display: inline-block;
     width: 100px;
     height: 45px;
     background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.approval-button-submit {
+    display: inline-block;
+    width: 100px;
+    height: 45px;
+    background-color: rgba(115, 115, 115, 1);
     color: white;
     border: none;
     border-radius: 5px;

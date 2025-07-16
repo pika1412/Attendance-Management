@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="working-content">
-    <form action="{{ route('working_status') }}" method="POST">
+    <form action="{{ route('working_status.update') }}" method="POST">
     @csrf
 <!--出勤前-->
     @if($status === 'off_duty')

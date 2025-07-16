@@ -8,12 +8,12 @@
     <div class="list-title">
         <h2>スタッフ一覧</h2>
     </div><!--list-title-->
-    <div class="attendance-list">
+    <div class="attendance-list-table">
         <table>
                 <tr class="table-row">
                     <th>名前</th>
                     <th>メールアドレス</th>
-                    <th>詳細</th>
+                    <th>月次勤怠</th>
                 </tr>
                     @foreach($users as $user)
                     <tr class="table-row">

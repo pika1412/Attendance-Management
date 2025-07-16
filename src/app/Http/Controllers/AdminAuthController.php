@@ -17,15 +17,17 @@ class AdminAuthController extends Controller
 
     public function login(Request $request){
         $credential = $request->only(['email','password']);
+        $user = User::where('email',$credential['email'])->first();
 
-        if(Auth::attempt($credential)){
+        if($user && $user->is_admin){
+            if(Auth::attempt($credential)){
 
-            return redirect()->route('admin.attendance_list');
-        }else{
+                return redirect()->route('admin.attendance_list');
+            }
+        }
             return back()->withErrors([
                 'email' => 'ログインできませんでした。',
             ]);
-        }
     }
 
     public function logout()

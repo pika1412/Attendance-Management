@@ -44,7 +44,7 @@ Route::middleware(['auth','verified'])->group(function () {
 Route::get('/attendance',[AttendanceController::class,'create'])->name('attendance.create');
 //勤怠ステータス表示更新
 Route::get('/working_status',[AttendanceController::class,'showWorkingStatus'])->name('working_status');//画面表示
-Route::post('/working_status',[AttendanceController::class,'update'])->name('working_status');//ステータス変更
+Route::post('/working_status',[AttendanceController::class,'update'])->name('working_status.update');//ステータス変更
 Route::get('/attendance-list',[AttendanceController::class,'index'])->name('attendance.index');//勤怠一覧
 Route::get('/attendance/list/{id}',[AttendanceController::class,'show'])->name('attendance.show');//詳細ボタン
 Route::get('/attendance/detail/{id}', [AttendanceController::class, 'showDetail'])->name('attendance.detail');//詳細画面

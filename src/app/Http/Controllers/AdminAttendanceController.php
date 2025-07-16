@@ -18,15 +18,14 @@ class AdminAttendanceController extends Controller
     public function index(Request $request){
         $user = Auth::user();
 
-        $currentMonth = Carbon::parse($request->input('month', date('Y-m')));
-        $prevMonth = $currentMonth->copy()->subMonth();
-        $nextMonth = $currentMonth->copy()->addMonth();
+        $today = Carbon::parse($request->input('day', today()));
+        $yesterday = $today->copy()->subDay();
+        $tomorrow = $today->copy()->addDay();
 
-        $today = \Carbon\Carbon::today();
-        $todayAttendances = Attendance::with('user')->where('work_date',$today)
+        $todayAttendances = Attendance::with('user')->where('work_date',$today->toDateString())
         ->whereNotNull('start_time')->get();
 
-        return view('admin.attendance_list',compact('currentMonth', 'prevMonth', 'nextMonth', 'today','todayAttendances'));
+        return view('admin.attendance_list',compact('today', 'yesterday', 'tomorrow','todayAttendances'));
     }
 
     public function showAdminDetail($id){

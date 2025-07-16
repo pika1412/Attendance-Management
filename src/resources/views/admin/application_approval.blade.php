@@ -1,6 +1,6 @@
 @extends('layouts.admin')<!--修正承認画面-->
 @section('css')
-<link rel="stylesheet" href=" {{ asset('css/attendance-detail.css') }}" />
+<link rel="stylesheet" href=" {{ asset('css/approval.css') }}" />
 @endsection
 @section('content')
 <div class="detail-content">
@@ -12,13 +12,13 @@
             @csrf
             @method('PATCH')
             <table>
-                <tr class="table-row">
+                <tr class="name-row">
                     <th>名前</th>
                     <td>{{$attendance->user->name}}</td>
                 </tr>
-                <tr class="table-row">
+                <tr class="date-row">
                     <th>日付</th>
-                    <td>{{\Carbon\Carbon::parse($attendance->work_date)->format('Y年') }}&nbsp;{{ \Carbon\Carbon::parse($attendance->work_date)->format('n月j日')}}</td>
+                    <td><span>{{\Carbon\Carbon::parse($attendance->work_date)->format('Y年') }}</span><span>{{ \Carbon\Carbon::parse($attendance->work_date)->format('n月j日')}}</span></td>
                 </tr>
                 <tr class="table-row">
                     <th>出勤・退勤</th>
@@ -48,14 +48,19 @@
                     </td>
                 </tr>
             </table>
+        </div><!--detail-table-->
+        <div class="button-container">
             @if($status === 'pending')
-                <button type="submit">承認
+            <div class="button-container">
+                <button class="approval-button-submit" type="submit">承認
                 </button>
+            </div>
             @elseif($status === 'approved')
-            <button disabled>承認済み
-            </button>
+            <div class="button-container">
+                <button class ="approval-button-submit" disabled>承認済み
+                </button>
+            </div>
             @endif
         </form>
-    </div><!--detail-table-->
 </div><!--detail-content-->
 @endsection

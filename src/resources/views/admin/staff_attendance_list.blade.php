@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('css')
-<link rel="stylesheet" href=" {{ asset('css/attendance-list.css') }}" />
+<link rel="stylesheet" href=" {{ asset('css/staff_attendance_list.css') }}" />
 @endsection
 <!--スタッフ別勤怠画面-->
 @section('content')
@@ -20,7 +20,7 @@
             </li>
         </ul>
     </nav>
-    <div class="attendance-list">
+    <div class="attendance-list-table">
         <table>
             <thead>
                 <tr class="table-row">

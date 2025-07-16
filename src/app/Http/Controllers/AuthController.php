@@ -48,7 +48,7 @@ class AuthController extends Controller
         return redirect()->intended('/working_status')->with('message', 'ログイン成功');
         }
         return redirect()->back()->withErrors([
-            'email' => 'ログイン情報が正しくありません。',
+            'email' => 'ログイン情報が登録されていません。',
         ]);
     }
     public function logout()
