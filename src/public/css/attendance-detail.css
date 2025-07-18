@@ -61,6 +61,9 @@ body {
 .detail-table textarea{
     width: 300px;
     height: 70px;
+    font-size: 14px;
+    padding: 10px;
+    font-weight: bold;
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-left: 40px;
@@ -93,4 +96,10 @@ body {
     text-align: center;
     font-size: 15px;
     font-weight: bold;
+}
+
+.message{
+    font-size: 18px;
+    color: rgba(255,0,0,0.5);
+    text-align: right;
 }

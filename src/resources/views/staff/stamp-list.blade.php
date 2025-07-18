@@ -11,8 +11,8 @@
     </div>
     <div class="border">
         <ul class="border-list">
-            <li class="{{ $page === 'pending' ? 'active' : ''}}"><a href="/application?page=pending">承認待ち</a></li>
-            <li class="{{ $page === 'approved' ? 'active' : ''}}"><a href="/application?page=approved">承認済み</a></li>
+            <li class="{{ $page === 'pending' ? 'active' : ''}}"><a href="/stamp_correction_request/list?page=pending">承認待ち</a></li>
+            <li class="{{ $page === 'approved' ? 'active' : ''}}"><a href="/stamp_correction_request/list?page=approved">承認済み</a></li>
         </ul>
     </div><!--border-->
     <div class="application-table">
@@ -46,7 +46,7 @@
                 <td>{{$app->user->name}}</td>
                 <td>{{$app->attendance->work_date}}</td>
                 <td>{{$app->attendance->memo}}</td>
-                <td>{{$app->applied_at}}</td>
+                <td>{{ \Carbon\Carbon::parse($app->applied_at)->format('Y/m/d') }}</td>
                 <td> <a href="{{ route('attendance.detail', ['id' => $app->attendance_id]) }}">詳細</a></td>
             </tr>
             @endforeach

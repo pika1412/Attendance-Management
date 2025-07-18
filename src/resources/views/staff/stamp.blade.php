@@ -9,17 +9,17 @@
     </div>
     <div class="stamp-table">
             <table>
-                <tr class="table-row">
+                <tr class="name-row">
                     <th>名前</th>
                     <td>{{$attendance->user->name}}</td>
                 </tr>
-                <tr class="table-row">
+                <tr class="date-row">
                     <th>日付</th>
                     <td>{{\Carbon\Carbon::parse($attendance->work_date)->format('Y年') }}&nbsp;{{ \Carbon\Carbon::parse($attendance->work_date)->format('n月j日')}}</td>
                 </tr>
                 <tr class="table-row">
                     <th>出勤・退勤</th>
-                    <td>{{ $attendance?->start_time ? \Carbon\Carbon::parse($attendance->start_time)->format('H:i') :null}}  ~  {{$attendance?->end_time ? \Carbon\Carbon::parse($attendance->end_time)->format('H:i') :null}}</td>
+                    <td><input type="text" name ="start_time" value="{{ $attendance?->start_time ? \Carbon\Carbon::parse($attendance->start_time)->format('H:i') :null}}">  ~  <input type="text" name ="end_time" value =" {{$attendance?->end_time ? \Carbon\Carbon::parse($attendance->end_time)->format('H:i') :null}}"></td>
                 </tr>
                 @foreach($attendance->breakTimes as $index => $break)
                 <tr class="table-row">
@@ -33,7 +33,7 @@
                     <td><textarea name="memo" id="memo">{{$attendance->memo}}</textarea></td>
                 </tr>
             </table>
+            </div><!--detail-table-->
             <p class="warning">*承認待ちのため修正できません。</p>
-    </div><!--detail-table-->
 </div><!--detail-content-->
 @endsection

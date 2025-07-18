@@ -69,3 +69,26 @@ body{
     font-size: 15px;
     font-weight: bold;
 }
+
+/*staff*/
+.month-navigation {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px 50px;
+    margin-bottom: 40px;
+    border: none;
+    border-radius: 10px;
+}
+
+.previous-month a,
+.next-month a {
+    color: rgba(115, 115, 115, 1);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.cirrent-month {
+    font-weight: bold;
+    font-size: 20px;
+}

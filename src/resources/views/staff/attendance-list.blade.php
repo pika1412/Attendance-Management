@@ -20,7 +20,7 @@
             </li>
         </ul>
     </nav>
-    <div class="attendance-list">
+    <div class="attendance-list-table">
         <table>
             <thead>
                 <tr class="table-row">

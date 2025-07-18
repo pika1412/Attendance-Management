@@ -1,1 +1,90 @@
-a
+body {
+    background: rgba(240, 239, 242, 1);
+    max-width: 1512px;
+}
+
+.stamp-content {
+    max-width: 800px;
+    width: 100%;
+    margin: 40px auto;
+}
+
+.stamp-title {
+    margin-bottom: 40px;
+    padding-left: 10px;
+    border-left: 5px solid black;
+    width: 300px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.stamp-table {
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.stamp-table table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    border: none;
+}
+
+.stamp-table th,
+.stamp-table td {
+    border-bottom: 3px solid rgba(240, 239, 242, 1);
+    ;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.stamp-table th {
+    color: rgba(115, 115, 115, 1);
+    padding: 25px 20px 25px 40px;
+    text-align: left;
+}
+
+.stamp-table td {
+    padding: 25px 0;
+}
+
+.stamp-table input {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 40px;
+    border: transparent;
+}
+
+.stamp-table textarea {
+    width: 300px;
+    height: 70px;
+    font-size: 14px;
+    padding: 10px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-left: 40px;
+    resize: none;
+    border: transparent;
+}
+
+.stamp-table td span:first-child {
+    margin-right: 150px;
+}
+
+.name-row td,
+.date-row td {
+    padding-left: 60px;
+}
+
+.warning{
+    font-size: 18px;
+    color: rgba(255, 0, 0, 0.5);
+    text-align: right;
+}

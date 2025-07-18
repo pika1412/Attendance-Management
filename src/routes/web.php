@@ -50,7 +50,7 @@ Route::get('/attendance/list/{id}',[AttendanceController::class,'show'])->name('
 Route::get('/attendance/detail/{id}', [AttendanceController::class, 'showDetail'])->name('attendance.detail');//詳細画面
 Route::patch('attendance/{id}/approval',[AttendanceController::class,'updateDetail'])->name('attendance.updateDetail');//修正ボタン
 Route::get('/stamp/{id}',[ApplicationController::class,'index'])->name('staff.stamp');//承認待ち画面
-Route::get('/application',[ApplicationController::class,'application'])->name('application');//申請一覧
+Route::get('/stamp_correction_request/list',[ApplicationController::class,'application'])->name('application');//申請一覧
 });
 
 //管理者認証

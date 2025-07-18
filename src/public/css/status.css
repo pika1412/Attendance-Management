@@ -1,0 +1,120 @@
+
+body {
+    height: 100%;
+    position: relative;
+    background: rgba(240, 239, 242, 1);
+}
+
+.working-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.status{
+    width: 500px;
+    margin: 0;
+    text-align: center;
+}
+
+.working-status{
+    width: 100px;
+    background-color: rgba(200,200,200,1);
+    color: black;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.status-date{
+    margin: 25px 0;
+    font-size: 40px;
+}
+
+.status-time{
+    margin: 0 0 30px 0;
+    font-weight: bolder;
+    font-size: 80px;
+    line-height: 80px;
+}
+
+.status-button{
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.status-button-submit{
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    font-size: 30px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.status-button-container{
+    width: 400px;
+    display: flex;
+    margin: 0px auto;
+    gap: 50px;
+}
+
+.working-button-submit {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 8px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.start-break-button{
+        width: 100%;
+        background-color: white;
+        color: black;
+        padding: 8px;
+        text-align: center;
+        border: none;
+        border-radius: 15px;
+        font-size: 25px;
+        font-weight: bold;
+        margin-top: 20px;
+        cursor: pointer;
+}
+
+.end-break-button-submit{
+    width: 100%;
+    background-color: white;
+    color: black;
+    padding: 8px;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    font-size: 30px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.finished{
+    font-size: 26px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 60px;
+}

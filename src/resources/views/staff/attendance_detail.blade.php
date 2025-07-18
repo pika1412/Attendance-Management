@@ -12,13 +12,13 @@
             @csrf
             @method('PATCH')
             <table>
-                <tr class="table-row">
+                <tr class="name-row">
                     <th>名前</th>
                     <td>{{$attendance->user->name}}</td>
                 </tr>
-                <tr class="table-row">
+                <tr class="date-row">
                     <th>日付</th>
-                    <td>{{\Carbon\Carbon::parse($attendance->work_date)->format('Y年') }}&nbsp;{{ \Carbon\Carbon::parse($attendance->work_date)->format('n月j日')}}</td>
+                    <td><span>{{\Carbon\Carbon::parse($attendance->work_date)->format('Y年') }}<span></span>{{ \Carbon\Carbon::parse($attendance->work_date)->format('n月j日')}}</span></td>
                 </tr>
                 <tr class="table-row">
                     <th>出勤・退勤</th>
@@ -48,13 +48,15 @@
                     </td>
                 </tr>
             </table>
+            </div><!--detail-table-->
             @if($status === null || $status === 'rejected')
-                <button type="submit">修正
+                <div class="button-container">
+                <button class="button-submit" type="submit">修正
                 </button>
+                </div>
             @elseif($status === 'pending')
                 <p class="message">※承認待ちの為修正はできません</p>
             @endif
         </form>
-    </div><!--detail-table-->
 </div><!--detail-content-->
 @endsection
