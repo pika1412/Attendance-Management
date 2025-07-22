@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Http\Requests\LoginRequest;
 
 
 
@@ -15,7 +16,7 @@ class AdminAuthController extends Controller
         return view('auth.admin_login');
     }
 
-    public function login(Request $request){
+    public function login(LoginRequest $request){
         $credential = $request->only(['email','password']);
         $user = User::where('email',$credential['email'])->first();
 
@@ -26,7 +27,7 @@ class AdminAuthController extends Controller
             }
         }
             return back()->withErrors([
-                'email' => 'ログインできませんでした。',
+                'email' => 'ログイン情報が登録されていません',
             ]);
     }
 
