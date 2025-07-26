@@ -56,6 +56,8 @@
                 </div>
             @elseif($status === 'pending')
                 <p class="message">※承認待ちの為修正はできません</p>
+            @elseif($status === 'approved')
+                <p class="message">※承認済みです</p>
             @endif
         </form>
 </div><!--detail-content-->

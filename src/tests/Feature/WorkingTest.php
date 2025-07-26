@@ -38,7 +38,7 @@ class WorkingTest extends TestCase
         ]);
 
         $response = $this->get('/working_status');
-        $response->assertSee('勤務中');
+        $response->assertSee('出勤中');
     }
 
     public function test_出勤1日1回(){

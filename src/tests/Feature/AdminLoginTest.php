@@ -20,7 +20,7 @@ class AdminLogin extends TestCase
     }
 
     public function test_管理者ログイン(){
-        $admin = User::find(1);
+        $admin = User::where('is_admin',true)->first();
 
         $response = $this->post('/admin/login',[
             'email' => $admin->email,

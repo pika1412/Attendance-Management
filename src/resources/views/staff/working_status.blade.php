@@ -22,7 +22,7 @@
     @elseif($status === 'working')
         <div class="status">
             <div class="working-status">
-                勤務中
+                出勤中
             </div><!--working-status-->
 
             <p class="status-date">{{ now()->isoFormat('YYYY年MM月DD日 (ddd)') }}</p>

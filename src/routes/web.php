@@ -66,7 +66,7 @@ Route::patch('attendance/{id}/approval',[AdminAttendanceController::class,'updat
 Route::get('/staff/list',[AdminAttendanceController::class,'staffList'])->name('staff_list');//スタッフ一覧
 Route::get('attendance/staff/{id}',[AdminAttendanceController::class,'staffAttendanceList'])->name('staff_attendance_list');//スタッフ別勤怠一覧
 Route::get('/stamp/correction_request/list',[AdminApplicationController::class,'application'])->name('stamp_list');//申請一覧
-Route::get('/stamp_correction_request/approve/{attendance_correct_request}',[AdminApplicationController::class,'showAdminApproval'])->name('application_approval');//修正承認画面
-Route::patch('/stamp_correction_request/approve/{attendance_correct_request}', [AdminApplicationController::class, 'approval'])->name('approval');
+Route::get('/stamp_correction_request/approve/{applicationId}',[AdminApplicationController::class,'showAdminApproval'])->name('application_approval');//修正承認画面
+Route::patch('/stamp_correction_request/approve/{applicationId}', [AdminApplicationController::class, 'approval'])->name('approval');
 });//承認ボタンリダイレクト
 

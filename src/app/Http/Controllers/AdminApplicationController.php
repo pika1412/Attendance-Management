@@ -10,6 +10,7 @@ use Carbon\CarbonPeriod;
 use App\Models\BreakTime;
 use App\Models\Application;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AttendanceRequest;
 
 class AdminApplicationController extends Controller
 {
@@ -28,16 +29,20 @@ class AdminApplicationController extends Controller
         return view('admin.stamp_list',compact('page','applications'));
     }
 
-    public function showAdminApproval($attendance_correct_request){
-        $user = Auth::user();
-        $attendance = Attendance::with(['user','breakTimes'])->findOrFail($attendance_correct_request);
-        $application = Application::where('attendance_id',$attendance->id)->first();
-        $status = $application?->status??null;
-
-        return view('admin.application_approval',compact('attendance','status'));
+    public function showAdminApproval($applicationId){
+        $application = Application::with('attendance.user', 'attendance.breakTimes')->findOrFail($applicationId);
+        $attendance = $application->attendance;
+        $status = $application->status;
+        return view('admin.application_approval', compact('attendance','status','application'));
     }
 
-    public function approval(Request $request,$attendance_correct_request){
+    public function approval(AttendanceRequest $request,$applicationId){
+        $application = Application::with('attendance')->findOrFail($applicationId);
+
+        if (!$application->attendance) {
+            return redirect()->route('admin.stamp_list')->with('error', '承認対象の勤怠が見つかりませんでした。');
+        }
+
         $start = $request->input('start_time');
         $end = $request->input('end_time');
         $memo = $request->input('memo');
@@ -46,21 +51,19 @@ class AdminApplicationController extends Controller
         $startDateTime = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $start);
         $endDateTime = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $end);
 
-        $attendance = Attendance::findOrFail($attendance_correct_request);
+        $attendance = $application->attendance;
         $attendance->update([
             'start_time' => $startDateTime,
             'end_time' => $endDateTime,
             'memo' => $request->input('memo'),
         ]);
+        $attendance->refresh();
 
-        $application = Application::where('attendance_id',$attendance->id)->first();
+        $application->status = 'approved';
+        $application->save();
 
-        if($application){
-            $application->status = 'approved';
-            $application->save();
-        }
         $status = $application?->status??null;
 
-        return view('admin.application_approval',compact('attendance','start','end','memo','date','startDateTime','application','status'));
+        return redirect()->route('admin.application_approval',['applicationId' => $application->id])->with('success', '申請を承認しました。');
     }
 }

@@ -8,7 +8,7 @@
         <h2>勤怠詳細</h2>
     </div>
     <div class="detail-table">
-        <form action="{{ route('admin.application_approval',['attendance_correct_request' => $attendance->id]) }}" method="POST">
+        <form action="{{ route('admin.application_approval',['applicationId' => $application->id]) }}" method="POST">
             @csrf
             @method('PATCH')
             <table>
@@ -38,7 +38,6 @@
                     </td>
                 </tr>
                 @endforeach
-                </tr>
                 <tr class="table-row">
                     <th>備考</th>
                     <td><textarea name="memo" id="memo">{{ old('memo', $attendance->memo) }}</textarea>
@@ -57,7 +56,7 @@
             </div>
             @elseif($status === 'approved')
             <div class="button-container">
-                <button class ="approval-button-submit" disabled>承認済み
+                <button class ="approved-button-submit" disabled>承認済み
                 </button>
             </div>
             @endif

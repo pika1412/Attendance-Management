@@ -81,7 +81,7 @@ body {
     text-align: right;
 }
 
-.button-submit {
+.approval-button-submit {
     display: inline-block;
     width: 100px;
     height: 45px;
@@ -95,11 +95,11 @@ body {
     font-weight: bold;
 }
 
-.approval-button-submit {
+.approved-button-submit {
     display: inline-block;
     width: 100px;
     height: 45px;
-    background-color: rgba(115, 115, 115, 1);
+    background-color: grey;
     color: white;
     border: none;
     border-radius: 5px;

@@ -46,7 +46,7 @@
                 <td>{{\Carbon\Carbon::parse($app->attendance->work_date)->format('Y/m/d') }}</td>
                 <td>{{$app->attendance->memo}}</td>
                 <td>{{\Carbon\Carbon::parse($app->applied_at)->format('Y/m/d') }}</td>
-                <td> <a href="{{ route('admin.application_approval', ['attendance_correct_request' => $app->attendance_id]) }}">詳細</a></td>
+                <td> <a href="{{ route('admin.application_approval', ['applicationId' => $app->id ]) }}">詳細</a></td>
             </tr>
             @endforeach
         </table>

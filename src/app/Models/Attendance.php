@@ -28,6 +28,11 @@ class Attendance extends Model
     return $this->hasMany('App\Models\BreakTime');
 }
 
+public function application()
+{
+    return $this->hasOne(Application::class);
+}
+
     public function getTotalTimeFormattedAttribute(){
         if(!$this->start_time || !$this->end_time) return null;
 

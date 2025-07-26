@@ -3,10 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Carbon\Carbon;
+use App\Models\Application;
 use App\Models\Attendance;
 use App\Models\User;
 
-class AttendanceFactory extends Factory
+class ApplicationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,11 +19,10 @@ class AttendanceFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'work_date' => $this->faker->date(),
-            'status' => 'off_duty',
-            'status' => 'on_break',
-            'status' => 'working',
-            'status' => 'finished',
+            'attendance_id' => Attendance::factory(),
+            'status' => 'pending',
+            'status' => 'approved',
+            'applied_at' => Carbon::now(),
         ];
     }
 }

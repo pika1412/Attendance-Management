@@ -64,7 +64,7 @@ class FinishedTest extends TestCase
         ]);
 
         $response = $this->get('/working_status');
-        $response->assertSee('勤務中');
+        $response->assertSee('出勤中');
 
         $response = $this->get('/working_status');
         $response->assertStatus(200);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\AttendanceRequest;
 use App\Models\User;
 use App\Models\Attendance;
 use Carbon\Carbon;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class ApplicationController extends Controller
 {
     public function index($id){
-        $attendance = Attendance::where('id',$id)->where('user_id',auth()->id())->with('breakTimes','user')->firstOrFail();
+        $attendance = Attendance::where('id',$id)->where('user_id',auth()->id())->with('breakTimes','user','application')->firstOrFail();
 
         return view('staff.stamp',compact('attendance'));
     }
@@ -33,4 +34,5 @@ class ApplicationController extends Controller
 
         return view('staff.stamp-list',compact('applications','user','page'));
     }
+
 }

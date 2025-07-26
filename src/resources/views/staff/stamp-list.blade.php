@@ -16,7 +16,7 @@
         </ul>
     </div><!--border-->
     <div class="application-table">
-        @if($page == 'pending')
+        @if($page == 'pending' || $page == 'approved')
         <table>
             <tr class="table-row">
                 <th>状態</th>
