@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Models\Attendance;
@@ -11,6 +12,7 @@ use App\Models\User;
 use App\Models\BreakTime;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AttendanceRequest;
+
 
 
 class AdminAttendanceController extends Controller
@@ -69,8 +71,54 @@ class AdminAttendanceController extends Controller
 
         $datesInMonth = \Carbon\CarbonPeriod::create($currentMonth->copy()->startOfMonth(),$currentMonth->copy()->endOfMonth());
 
-        $attendances = Attendance::where('user_id',$id)->whereBetween('work_date',[$currentMonth->copy()->startOfMonth(),$currentMonth->copy()->endOfMonth()])->with('breakTimes')->get()->keyBy('work_date');
+        $attendances = Attendance::where('user_id', $id)
+        ->whereBetween('work_date', [$currentMonth->copy()->startOfMonth(), $currentMonth->copy()->endOfMonth()])
+        ->with('breakTimes')
+        ->get()
+        ->keyBy('work_date');
 
         return view('admin.staff_attendance_list',compact('user','attendances','currentMonth', 'prevMonth', 'nextMonth', 'datesInMonth'));
+    }
+
+    public function exportCsv(Request $request, $id){
+        $user = User::findOrFail($id);
+        $monthInput = $request->input('month', Carbon::now()->format('Y-m')); // 例: "2025-07"
+        $currentMonth = Carbon::parse($monthInput);
+
+
+        $attendances = Attendance::where('user_id',$id)->whereBetween('work_date',[$currentMonth->copy()->startOfMonth(),$currentMonth->copy()->endOfMonth()])->with('breakTimes')->get();
+
+        $csvHeader = [
+            '日付','出勤','退勤','休憩','合計'];
+        $temps = [];
+        array_push($temps, $csvHeader);
+
+        foreach($attendances as $attendance){
+            $break = $attendance->breakTimes->first();
+
+            $temp = [
+                $attendance->work_date ?? '',
+                $attendance->start_time ?? '',
+                $attendance->end_time ?? '',
+                optional($break)->start_break ?? '',
+                optional($break)->end_break ?? '',
+                $attendance->total_time_formatted ?? '',
+            ];
+            array_push($temps,$temp);
+            }
+        $stream = fopen('php://temp','r+b');
+        foreach($temps as $temp){
+            fputcsv($stream,$temp);
+        }
+        rewind($stream);
+        $csv = str_replace(PHP_EOL,"\r\n",stream_get_contents($stream));
+        $csv = mb_convert_encoding($csv, 'SJIS-win', 'UTF-8');
+        $now = new Carbon();
+        $filename = "勤怠データ_{$user->name}_{$now->format('Ymd')}.csv";
+        $headers = array(
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename={$filename}",
+        );
+        return response($csv, 200, $headers);
     }
 }

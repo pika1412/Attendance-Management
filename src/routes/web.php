@@ -65,6 +65,7 @@ Route::get('/attendance/{id}',[AdminAttendanceController::class,'showAdminDetail
 Route::patch('attendance/{id}/approval',[AdminAttendanceController::class,'updateDetail'])->name('attendance.updateDetail');//修正ボタン
 Route::get('/staff/list',[AdminAttendanceController::class,'staffList'])->name('staff_list');//スタッフ一覧
 Route::get('attendance/staff/{id}',[AdminAttendanceController::class,'staffAttendanceList'])->name('staff_attendance_list');//スタッフ別勤怠一覧
+Route::get('attendance/staff/{id}/csv', [AdminAttendanceController::class, 'exportCsv'])->name('admin.attendance.staff.csv');//csv出力
 Route::get('/stamp/correction_request/list',[AdminApplicationController::class,'application'])->name('stamp_list');//申請一覧
 Route::get('/stamp_correction_request/approve/{applicationId}',[AdminApplicationController::class,'showAdminApproval'])->name('application_approval');//修正承認画面
 Route::patch('/stamp_correction_request/approve/{applicationId}', [AdminApplicationController::class, 'approval'])->name('approval');

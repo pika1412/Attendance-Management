@@ -53,7 +53,12 @@
             </tbody>
         </table>
     </div>
-
+    <div class="csv-button">
+        <form action="{{ url('admin/attendance/staff/' .$user->id . '/csv')}}" method="GET">
+            <input type="hidden" name="month" value="{{ request('month', \Carbon\Carbon::now()->format('Y-m')) }}">
+            <button class="csv-button-submit" type="submit">CSV出力</button>
+        </form>
+    </div>
 </div><!--attendance-list-content-->
 
 

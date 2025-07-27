@@ -22,12 +22,12 @@ body {
 }
 
 .working-status{
-    width: 100px;
+    width: 120px;
     background-color: rgba(200,200,200,1);
-    color: black;
+    color: rgba(105,105,105,1);
     border: none;
     border-radius: 30px;
-    padding: 5px;
+    padding: 10px;
     font-size: 18px;
     font-weight: bold;
     margin: 0 auto;

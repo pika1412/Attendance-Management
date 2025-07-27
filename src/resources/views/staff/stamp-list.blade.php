@@ -44,7 +44,7 @@
                         @endswitch
                 </td>
                 <td>{{$app->user->name}}</td>
-                <td>{{$app->attendance->work_date}}</td>
+                <td>{{\Carbon\Carbon::parse($app->attendance->work_date)->format('Y/m/d') }}</td>
                 <td>{{$app->attendance->memo}}</td>
                 <td>{{ \Carbon\Carbon::parse($app->applied_at)->format('Y/m/d') }}</td>
                 <td> <a href="{{ route('attendance.detail', ['id' => $app->attendance_id]) }}">詳細</a></td>

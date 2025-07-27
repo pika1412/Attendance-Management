@@ -46,8 +46,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Models\Attendance');
     }
 
-    public function break(){
-        return $this->hasOne('App\Models\Break');
+    public function breakTime(){
+        return $this->hasOne('App\Models\BreakTime');
     }
 
     public function admin(){
