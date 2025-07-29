@@ -66,4 +66,6 @@ DB_PASSWORD=mock_exam__pass
 * phpMyAdmin : http://localhost:8080/
 
 ### ER図
-* 
+<img width="421" height="406" alt="readme" src="https://github.com/user-attachments/assets/3fd7a4b6-c24d-43f0-bc13-1bbabd26b166" />
+
+
