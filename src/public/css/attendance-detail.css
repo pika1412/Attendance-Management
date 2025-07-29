@@ -33,9 +33,10 @@ body {
 
 .detail-table th,
 .detail-table td{
-    border-bottom: 3px solid rgba(240, 239, 242, 1);;
-    font-size: 15px;
+    border-bottom: 3px solid rgba(240, 239, 242, 1);
+    font-size: 18px;
     font-weight: bold;
+    letter-spacing: 0.1em;
 }
 
 .detail-table th{
@@ -53,16 +54,17 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     text-align: center;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
     margin:0 40px;
+    letter-spacing: 0.1em;
 }
 
 .detail-table textarea{
     width: 300px;
     height: 70px;
-    font-size: 14px;
-    padding: 10px;
+    font-size: 17px;
+    padding: 12px;
     font-weight: bold;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -71,7 +73,7 @@ body {
 }
 
 .detail-table td span:first-child {
-    margin-right: 150px;
+    margin-right: 130px;
 }
 
 .name-row td,
@@ -96,6 +98,7 @@ body {
     text-align: center;
     font-size: 15px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .message{

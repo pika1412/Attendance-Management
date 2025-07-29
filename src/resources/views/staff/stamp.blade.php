@@ -15,7 +15,7 @@
                 </tr>
                 <tr class="date-row">
                     <th>日付</th>
-                    <td>{{\Carbon\Carbon::parse($attendance->work_date)->format('Y年') }}&nbsp;{{ \Carbon\Carbon::parse($attendance->work_date)->format('n月j日')}}</td>
+                    <td><span>{{\Carbon\Carbon::parse($attendance->work_date)->format('Y年') }}<span></span>{{ \Carbon\Carbon::parse($attendance->work_date)->format('n月j日')}}</td></span>
                 </tr>
                 <tr class="table-row">
                     <th>出勤・退勤</th>

@@ -24,11 +24,11 @@ class AttendanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_time' => ['nullable','date_format:H:i','required_with:end_time','before:end_time'],
-            'end_time' => ['nullable','date_format:H:i','required_with:start_time','after:start_time'],
-            'start_break' => ['nullable','date_format:H:i','required_with:start_time,end_time','after_or_equal:start_time','before_or_equal:end_time'],
-            'end_break' => ['nullable','date_format:H:i','before_or_equal:end_time','after_or_equal:start_time'],
-            'memo' =>['required'],
+            'start_time' => ['nullable', 'date_format:H:i', 'required_with:end_time', 'before:end_time'],
+            'end_time'   => ['nullable', 'date_format:H:i', 'required_with:start_time', 'after:start_time'],
+            'start_break.*' => ['nullable', 'date_format:H:i', 'after_or_equal:start_time', 'before_or_equal:end_time'],
+            'end_break.*'   => ['nullable', 'date_format:H:i', 'after_or_equal:start_time', 'before_or_equal:end_time'],
+            'memo' => ['required'],
         ];
     }
 

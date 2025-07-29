@@ -19,6 +19,11 @@ class Attendance extends Model
         'memo',
     ];
 
+    protected $casts = [
+    'start_time' => 'datetime',
+    'end_time' => 'datetime',
+];
+
     public function user(){
         return $this->belongsTo('App\Models\User');
     }

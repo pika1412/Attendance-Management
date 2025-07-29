@@ -31,14 +31,51 @@ body{
 
 .previous-day a,
 .next-day a{
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: rgba(115,115,115,1);
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
+    position: relative;
+}
+
+.previous-day a::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background: url(../img/arrow.png) no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+}
+
+.next-day a::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background: url(../img/arrow.png) no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+    opacity: 0.3;
 }
 
 .today{
+    display: flex;
     font-weight: bold;
     font-size: 20px;
+    gap: 10px;
+    position: relative;
+}
+
+.today ::before {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 20px;
+    background: url(../img/calendar.png) no-repeat;
+    background-size: contain;
 }
 
 .attendance-list-table{
@@ -83,12 +120,49 @@ body{
 
 .previous-month a,
 .next-month a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: rgba(115, 115, 115, 1);
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
+    position: relative;
 }
 
 .current-month {
+    display: flex;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 23px;
+    gap: 10px;
+    position: relative;
+}
+
+.previous-month a::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background: url(../img/arrow.png) no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+}
+
+.next-month a::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background: url(../img/arrow.png) no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+    opacity: 0.3;
+}
+
+.current-month ::before {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 20px;
+    background: url(../img/calendar.png) no-repeat;
+    background-size: contain;
 }

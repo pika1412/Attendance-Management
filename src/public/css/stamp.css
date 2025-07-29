@@ -55,10 +55,11 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     text-align: center;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
     margin: 0 40px;
     border: transparent;
+    letter-spacing: 0.1em;
 }
 
 .stamp-table textarea {
@@ -69,7 +70,7 @@ body {
     font-weight: bold;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-left: 40px;
+    margin-left: 50px;
     resize: none;
     border: transparent;
 }
@@ -81,10 +82,15 @@ body {
 .name-row td,
 .date-row td {
     padding-left: 60px;
+    letter-spacing: 0.1em;
 }
 
 .warning{
     font-size: 18px;
     color: rgba(255, 0, 0, 0.5);
     text-align: right;
+}
+
+.stamp-table td span:first-child {
+    margin-right: 130px;
 }

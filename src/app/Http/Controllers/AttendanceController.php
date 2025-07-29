@@ -135,16 +135,34 @@ class AttendanceController extends Controller
         $memo = $request->input('memo');
         $date = $request->input('working_date') ?? now()->toDateString();
 
-        $startDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $start);
-        $endDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $end);
+        $startDateTime = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $start);
+        $endDateTime = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $end);
 
         $attendance = Attendance::findOrFail($id);
+
         $attendance->update([
             'start_time' => $startDateTime,
             'end_time' => $endDateTime,
             'memo' => $request->input('memo'),
         ]);
 
+        $startBreaks = $request->input('start_break');
+        $endBreaks = $request->input('end_break');
+
+        foreach($attendance->breakTimes as $index => $breakTime){
+            $startBreak = $startBreaks[$index] ?? null;
+            $endBreak = $endBreaks[$index] ?? null;
+
+            if($startBreak && $endBreak){
+                $startBreakDateTime = Carbon::createFromFormat('Y-m-d H:i' ,$date . ' ' . $startBreak);
+                $endBreakDateTime = Carbon::createFromFormat('Y-m-d H:i', $date. ' ' . $endBreak);
+
+                $breakTime->update([
+                    'start_break' => $startBreakDateTime,
+                    'end_break' => $endBreakDateTime,
+                ]);
+            }
+        }
         Application::create([
             'user_id' => auth()->id(),
             'attendance_id' =>$attendance->id,
