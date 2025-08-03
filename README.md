@@ -4,6 +4,10 @@
 ### 1. Dockerビルド
 * git clone リンク
 * docker-compose up -d --build
+  
+### Docker起動時の注意点
+エラーが出る場合は以下のディレクトリ追加をお願いします。
+mkdir docker/mysql/data
 
 ### 2. Laravel環境構築
 * docker-compose exec php bash
