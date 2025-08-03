@@ -3,10 +3,10 @@
 ## 環境構築
 ### 1. Dockerビルド
 * git clone リンク
-* docker compose up -d --build
+* docker-compose up -d --build
 
 ### 2. Laravel環境構築
-* docker compose exec php bash
+* docker-compose exec php bash
 * composer install
 * cp .env.example .env(envファイルを以下のように環境を編集)  
 APP_NAME="Attendance Management"  
@@ -18,7 +18,7 @@ DB_USERNAME=mock_exam_user
 DB_PASSWORD=mock_exam__pass  
 
 * php artisan key:generate
-* php artisan migrate
+* php artisan migrate:fresh
 * php artisan db:seed(ダミーデータ投入)
 
 ### 3. メールアドレス認証
