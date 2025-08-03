@@ -18,7 +18,7 @@ DB_USERNAME=mock_exam_user
 DB_PASSWORD=mock_exam__pass  
 
 * php artisan key:generate
-* php artisan migrate:fresh
+* php artisan migrate
 * php artisan db:seed(ダミーデータ投入)
 
 ### 3. メールアドレス認証
